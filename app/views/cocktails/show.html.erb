@@ -1,4 +1,23 @@
 <h1>Make a <%= @cocktail.name %></h1>
 
+<table class="table table-hover" >
+  <thead>
+    <tr>
+      <td><strong>Ingredient</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+  </thead>
+  <tbody>
+  <%  @cocktail.doses.each do |dose| %>
+    <tr>
+      <td><%= dose.ingredient.name %></td>
+      <td><%= dose.description %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "add an ingredient", new_cocktail_dose_path(@cocktail) %></p>
+
 <p><%= link_to "back to all", cocktails_path %></p>
 
