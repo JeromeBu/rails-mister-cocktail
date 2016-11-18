@@ -13,13 +13,23 @@
     <tr>
       <td><%= dose.ingredient.name %></td>
       <td><%= dose.description %></td>
-      <td><%= link_to "delete ingredient", cocktail_dose_path(@cocktail, dose), method: :delete, data: { confirm: "Are you sure?" }%></td>
+      <td><%= link_to "delete ingredient", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" }%></td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
-<p><%= link_to "add an ingredient", new_cocktail_dose_path(@cocktail) %></p>
+<h1> Adding a dose </h1>
+
+<%= simple_form_for [@cocktail, @dose] do |f|%>
+  <%= f.error_notification %>
+  <%= f.input :description %>
+  <%= f.association :ingredient %>
+
+  <%= f.submit "Add dose", class: "btn btn-primary" %>
+<% end %>
+
+<hr>
 
 <p><%= link_to "back to all", cocktails_path %></p>
 
